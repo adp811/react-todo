@@ -1,21 +1,37 @@
+import axios from "axios";
 import React from "react"
 
-const ToDo = ({ text, todo, list, setList }) => {
+const ToDo = ({ text, todo, list, setList, updateList, setUpdateList }) => {
 
     const deletionHandler = () => {
-        setList(list.filter((elem) => elem.id !== todo.id));
+
+        const url = "http://localhost:5000/api/todo/delete"
+        const id = todo._id;
+    
+        axios.delete(`${url}/${id}`).then((res) => {
+            console.log(res);
+            setUpdateList(!updateList);
+            alert('Deleted Todo!');
+                
+        });
+
     };
 
     const completionHandler = () => {
-        setList(list.map(elem => {
-            if(elem.id === todo.id){
-                return {
-                    ...elem, completed: !elem.completed
-                }
-            }
-            return elem;  
-        }))
+        
+        const url = "http://localhost:5000/api/todo/complete";
+        const id = todo._id;
+        const completed = todo.completed;
 
+        axios.patch(`${url}/${id}`, {
+            completed: !completed
+
+        }).then((res) => {
+            console.log(res);
+            setUpdateList(!updateList);
+
+        });
+        
     }
 
     return (

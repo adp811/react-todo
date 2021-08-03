@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import './App.css';
 
@@ -12,15 +13,31 @@ function App() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredList, setFilteredList] = useState([]);
+  const [updateList, setUpdateList] = useState(false);
 
-  useEffect(() => { //run function only once upon startup;
-    console.log('Query All Todos...');
+  useEffect(() => { 
+    console.log('Querying All Todos...');
+    getTodos();
     
   }, []); 
 
   useEffect(() => {
+    getTodos();
+  }, [updateList]);
+
+  useEffect(() => {
     filterHandler();
   }, [list, status]);
+
+  const getTodos = () => {
+
+    const url = "http://localhost:5000/api/todo/all"
+
+    axios.get(url).then((res) => {
+      setList(res.data);
+    }); //find a way to query based on timestamp
+    
+  }
 
   const filterHandler = () => {
 
@@ -50,9 +67,16 @@ function App() {
         setInputText={setInputText} 
         list={list} 
         setList={setList} 
-        setStatus={setStatus} 
+        setStatus={setStatus}
+        setUpdateList={setUpdateList} 
+        updateList={updateList}
       />
-      <List filteredList={filteredList} setList={setList} list={list}/>
+      <List filteredList={filteredList}
+       setList={setList}
+       list={list}
+       setUpdateList={setUpdateList}
+       updateList = {updateList}
+      />
     </div>
   );
 }

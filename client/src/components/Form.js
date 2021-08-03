@@ -1,6 +1,7 @@
 import React from "react";
+import axios from "axios";
 
-const Form = ({ inputText, setInputText, list, setList, setStatus }) => {
+const Form = ({ inputText, setInputText, list, setList, setStatus, setUpdateList, updateList }) => {
 
     const inputTextHandler = (ev) => {
         setInputText(ev.target.value);
@@ -8,17 +9,21 @@ const Form = ({ inputText, setInputText, list, setList, setStatus }) => {
 
     const submitToDoHander = (ev) => {
 
-        ev.preventDefault();
-        setList([
-            ...list,
-            {
-                text: inputText,
-                completed: false,
-                id: Math.random() * 1000
-            },
-        ]);
+        const url = "http://localhost:5000/api/todo/add";
 
-        setInputText(""); //change state to empty text field
+        ev.preventDefault();
+    
+        axios.post(url, {
+            text: inputText,
+            completed: false
+
+        }).then((res) => {
+            console.log(res);
+            setUpdateList(!updateList);
+
+        });
+
+        setInputText(""); 
 
     }
 

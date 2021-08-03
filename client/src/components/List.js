@@ -3,7 +3,7 @@ import React from "react"
 //components 
 import ToDo from "./ToDo"
 
-const List = ({ list, setList, filteredList }) => {  
+const List = ({ list, setList, filteredList, updateList, setUpdateList }) => {  
    
     console.log(list);
 
@@ -11,7 +11,14 @@ const List = ({ list, setList, filteredList }) => {
         <div className="todo-container">
             <ul className="todo-list">
                 {filteredList.map((todo) => (
-                    <ToDo setList={setList} list={list} key={todo.id} todo={todo} text={todo.text} />
+                    <ToDo setList={setList} 
+                        list={list} 
+                        key={todo._id} 
+                        todo={todo} 
+                        text={todo.text}
+                        updateList={updateList}
+                        setUpdateList={setUpdateList}
+                     />
                 ))}
             </ul>
         </div>
