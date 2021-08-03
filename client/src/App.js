@@ -13,6 +13,11 @@ function App() {
   const [status, setStatus] = useState('all');
   const [filteredList, setFilteredList] = useState([]);
 
+  useEffect(() => { //run function only once upon startup;
+    console.log('Query All Todos...');
+    
+  }, []); 
+
   useEffect(() => {
     filterHandler();
   }, [list, status]);
