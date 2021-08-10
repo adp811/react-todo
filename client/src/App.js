@@ -44,15 +44,33 @@ function App() {
     switch(status) {
 
       case 'completed':
-        setFilteredList(list.filter(todo => todo.completed === true));
+
+        const filter1 = list.filter(todo => {
+          return(
+              todo.completed === true && 
+              todo.archived === false
+          )});
+
+        setFilteredList(filter1);
         break;
 
       case 'uncompleted':
-        setFilteredList(list.filter(todo => todo.completed === false));
+
+        const filter2 = list.filter(todo => {
+          return(
+              todo.completed === false && 
+              todo.archived === false
+          )});
+
+        setFilteredList(filter2);
+        break;
+      
+      case 'archived': 
+        setFilteredList(list.filter(todo => todo.archived === true));  
         break;
 
       default: 
-        setFilteredList(list)
+        setFilteredList(list.filter(todo => todo.archived === false));
 
     }
 

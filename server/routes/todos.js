@@ -7,7 +7,8 @@ router.post(('/add'), async (req, res) => {
     const todo = new Todo ({
 
         text: req.body.text,
-        completed: req.body.completed
+        completed: req.body.completed,
+        archived: req.body.archived
 
     });
 
@@ -40,6 +41,25 @@ router.get(('/all'), async (req, res) => {
 
 //complete todo: 
 router.patch(('/complete/:id'), async (req, res) => {
+
+    const id = req.params.id
+    const updates = req.body;
+    const options = {new: true};
+
+    await Todo.findByIdAndUpdate(id, updates, options, function(err, response){
+
+        if(err){
+            res.status(400).send(err);
+        } else {
+            res.send(response);
+        }
+
+    });
+      
+});
+
+//complete todo: 
+router.patch(('/archive/:id'), async (req, res) => {
 
     const id = req.params.id
     const updates = req.body;

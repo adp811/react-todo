@@ -1,5 +1,10 @@
 import axios from "axios";
-import React from "react"
+import React from "react";
+import ArchiveIcon from '@material-ui/icons/Archive';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+
 
 const ToDo = ({ text, todo, list, setList, updateList, setUpdateList }) => {
 
@@ -11,7 +16,7 @@ const ToDo = ({ text, todo, list, setList, updateList, setUpdateList }) => {
         axios.delete(`${url}/${id}`).then((res) => {
             console.log(res);
             setUpdateList(!updateList);
-            alert('Deleted Todo!');
+            alert('Permanently deleted todo!');
                 
         });
 
@@ -34,18 +39,38 @@ const ToDo = ({ text, todo, list, setList, updateList, setUpdateList }) => {
         
     }
 
+    const archiveHandler = () => {
+
+        const url = "http://localhost:5000/api/todo/archive";
+        const id = todo._id;
+        const archived = todo.archived;
+
+        axios.patch(`${url}/${id}`, {
+            archived: !archived
+
+        }).then((res) => {
+            console.log(res);
+            setUpdateList(!updateList);
+
+        });
+
+    }
+
     return (
 
         <div className="todo">
             <li className={`todo-item ${todo.completed ? "completed" : ""}`} >{text}</li>
 
             <button onClick={completionHandler} className="complete-btn">
-                <i className="fas fa-check"></i>
+                <CheckCircleIcon color='white' style={{ fontSize: 35 }}/>
             </button>
-
+            <button onClick={archiveHandler} className="archive-btn">
+                <ArchiveIcon color='white' style={{ fontSize: 35 }}/>
+            </button>
             <button onClick={deletionHandler} className="trash-btn">
-                <i className="fas fa-trash"></i>
+                <DeleteForeverIcon color='white' style={{ fontSize: 35 }}/>
             </button>
+           
 
         </div>
 

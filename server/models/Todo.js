@@ -16,6 +16,12 @@ const todoSchema = new mongoose.Schema({
         required: true,
 
     },
+    archived: {
+
+        type: Boolean,
+        required: true
+
+    },
     date: {
 
         type: Date,

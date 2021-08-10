@@ -15,7 +15,8 @@ const Form = ({ inputText, setInputText, list, setList, setStatus, setUpdateList
     
         axios.post(url, {
             text: inputText,
-            completed: false
+            completed: false,
+            archived: false
 
         }).then((res) => {
             console.log(res);
@@ -43,6 +44,7 @@ const Form = ({ inputText, setInputText, list, setList, setStatus, setUpdateList
                     <option value="all">All</option>
                     <option value="completed">Completed</option>
                     <option value="uncompleted">Uncompleted</option>
+                    <option value="archived">Archived</option>
                 </select>
             </div>
         </form>

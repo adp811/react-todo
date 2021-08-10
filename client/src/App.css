@@ -9,11 +9,7 @@ body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
 }
-header {
-  font-size: 2rem;
-}
 
-header,
 form {
   min-height: 20vh;
   display: flex;
@@ -28,13 +24,13 @@ form button {
   background: white;
 }
 form button {
-  color: purple;
+  color: gray;
   background: #f7fffe;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 form button:hover {
-  background: purple;
+  background: gray;
   color: white;
 }
 .todo-container {
@@ -49,6 +45,7 @@ form button:hover {
 }
 
 .todo {
+  width: 45vw;
   margin: 0.5rem;
   background: white;
   font-size: 1.5rem;
@@ -65,30 +62,23 @@ form button:hover {
   flex: 1;
 }
 
+.archive-btn,
 .trash-btn,
 .complete-btn {
-  background: red;
-  color: white;
+  color: red;
   border: none;
   padding: 1rem;
   cursor: pointer;
-  font-size: 1rem;
 }
 .complete-btn {
-  background: yellowgreen;
+  color: yellowgreen;
 }
+.archive-btn {
+  color: blue;
+}
+
 .todo-item {
   padding: 0rem 0.5rem;
-}
-
-.fa-trash,
-.fa-check {
-  pointer-events: none;
-}
-
-.fall {
-  transform: translateY(10rem) rotateZ(20deg);
-  opacity: 0;
 }
 
 .completed {
@@ -115,7 +105,7 @@ select {
   overflow: hidden;
 }
 select {
-  color: purple;
+  color: gray;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
   width: 12rem;
@@ -127,7 +117,7 @@ select {
   top: 0;
   right: 0;
   padding: 1rem;
-  background: purple;
+  background: gray;
   cursor: pointer;
   pointer-events: none;
 }
