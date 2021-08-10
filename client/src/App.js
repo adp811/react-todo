@@ -60,9 +60,6 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Aryan's To Do List</h1>
-      </header>
       <Form inputText={inputText} 
         setInputText={setInputText} 
         list={list} 
