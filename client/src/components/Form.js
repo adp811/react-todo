@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import AddIcon from '@material-ui/icons/Add';
 
 const Form = ({ inputText, setInputText, list, setList, setStatus, setUpdateList, updateList }) => {
 
@@ -37,7 +38,7 @@ const Form = ({ inputText, setInputText, list, setList, setStatus, setUpdateList
         <form>
             <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
             <button onClick={submitToDoHander} className="todo-button" type="submit">
-                <i className="fas fa-plus-square"></i>
+                <AddIcon/>
             </button>
             <div className="select">
                 <select onChange={statusHandler} name="todos" className="filter-todo">
